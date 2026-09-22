@@ -3,6 +3,61 @@
 
   const config = window.PORTFOLIO_CONFIG || {};
 
+  /* ---- Theme switcher ---- */
+  (function initThemeSwitcher() {
+    var THEMES = ["dark", "light", "warm"];
+    var dots = Array.prototype.slice.call(
+      document.querySelectorAll("[data-set-theme]")
+    );
+    if (!dots.length) return;
+
+    function applyTheme(theme, persist) {
+      if (THEMES.indexOf(theme) === -1) theme = "light";
+      document.documentElement.setAttribute("data-theme", theme);
+      if (persist !== false) {
+        try {
+          localStorage.setItem("theme", theme);
+        } catch (e) {}
+      }
+      dots.forEach(function (dot) {
+        var on = dot.getAttribute("data-set-theme") === theme;
+        dot.classList.toggle("is-active", on);
+        dot.setAttribute("aria-checked", on ? "true" : "false");
+        dot.tabIndex = on ? 0 : -1;
+      });
+    }
+
+    var current = document.documentElement.getAttribute("data-theme") || "light";
+    applyTheme(current, false);
+
+    dots.forEach(function (dot) {
+      dot.addEventListener("click", function () {
+        applyTheme(dot.getAttribute("data-set-theme"), true);
+      });
+      dot.addEventListener("keydown", function (event) {
+        var idx = THEMES.indexOf(dot.getAttribute("data-set-theme"));
+        var next = idx;
+        if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+          next = (idx + 1) % THEMES.length;
+        } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+          next = (idx - 1 + THEMES.length) % THEMES.length;
+        } else if (event.key === "Home") {
+          next = 0;
+        } else if (event.key === "End") {
+          next = THEMES.length - 1;
+        } else {
+          return;
+        }
+        event.preventDefault();
+        applyTheme(THEMES[next], true);
+        var target = document.querySelector(
+          '[data-set-theme="' + THEMES[next] + '"]'
+        );
+        if (target) target.focus();
+      });
+    });
+  })();
+
   /* ---- Year ---- */
   const yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = String(new Date().getFullYear());

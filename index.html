@@ -1,8 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (function () {
+      try {
+        var allowed = { light: 1, dark: 1, warm: 1 };
+        var fromQuery = new URLSearchParams(window.location.search).get("theme");
+        var saved = localStorage.getItem("theme");
+        var theme = allowed[fromQuery] ? fromQuery : saved;
+        if (allowed[theme]) {
+          document.documentElement.setAttribute("data-theme", theme);
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta name="description" content="Portfolio of Fardin Faruk — Jr. SQA Engineer specializing in AI-assisted test automation across fintech, e-commerce, and crypto products." />
   <title>Fardin Faruk — Jr. SQA Engineer</title>
   <link rel="icon" href="./favicon.ico" sizes="any" />
@@ -38,7 +51,7 @@
   </script>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
-<body class="font-body text-ink antialiased">
+<body class="font-body antialiased">
   <!-- Header -->
   <header id="site-header" class="site-header fixed top-0 inset-x-0 z-50">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
@@ -46,7 +59,7 @@
         <a href="#home" class="brand-link flex items-center gap-3 min-w-0">
           <span class="brand-mark" aria-hidden="true">FF</span>
           <span class="min-w-0">
-            <span class="font-display text-base sm:text-lg font-extrabold tracking-tight text-navy block leading-tight">
+            <span class="font-display text-base sm:text-lg font-extrabold tracking-tight text-heading block leading-tight">
               Fardin Faruk
             </span>
             <span class="brand-role">Jr. SQA Engineer</span>
@@ -68,7 +81,7 @@
           <button
             type="button"
             id="menu-toggle"
-            class="inline-flex h-10 w-10 items-center justify-center rounded-md border border-navy/15 text-navy"
+            class="menu-toggle inline-flex h-10 w-10 items-center justify-center rounded-md"
             aria-expanded="false"
             aria-controls="mobile-nav"
             aria-label="Open menu"
@@ -84,7 +97,7 @@
       </div>
     </div>
 
-    <div id="mobile-nav" class="mobile-nav md:hidden hidden border-t border-navy/10 bg-white/95 backdrop-blur">
+    <div id="mobile-nav" class="mobile-nav md:hidden hidden">
       <nav class="mx-auto max-w-6xl px-4 py-4 flex flex-col gap-3" aria-label="Mobile">
         <a href="#home" class="mobile-link">Home</a>
         <a href="#about" class="mobile-link">About</a>
@@ -104,16 +117,16 @@
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="grid min-h-[calc(100vh-4rem)] items-center gap-10 lg:grid-cols-2 lg:gap-12 py-12 lg:py-0">
           <div class="hero-copy reveal">
-            <p class="font-display text-sm font-bold uppercase tracking-[0.18em] text-accent mb-4">
+            <p class="font-display text-sm font-bold uppercase tracking-[0.18em] text-kicker mb-4">
               Manual &amp; Automation
             </p>
-            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-navy leading-[1.05]">
+            <h1 class="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-heading leading-[1.05]">
               Fardin Faruk
             </h1>
             <p class="hero-typewriter mt-4" aria-live="polite">
               <span id="typewriter-text">Jr. SQA Engineer</span><span class="typewriter-cursor" aria-hidden="true"></span>
             </p>
-            <p class="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-ink/80">
+            <p class="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-muted">
               Manual, API, and UI automation with Playwright, Postman, and JMeter,
               plus AI-assisted testing for fintech and crypto products.
             </p>
@@ -139,20 +152,20 @@
     </section>
 
     <!-- About -->
-    <section id="about" class="section bg-white">
+    <section id="about" class="section section-raised">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="reveal max-w-3xl">
           <p class="section-eyebrow">About Me</p>
           <h2 class="section-title">Quality-focused engineer for real product systems</h2>
-          <p class="mt-5 text-lg leading-relaxed text-ink/80">
-            I am <strong class="text-ink">Md. Fardin Faruk Bhuiyan</strong>, a Jr. SQA Engineer at
-            <strong class="text-ink">Newroz Technologies Limited</strong> (September 2025 – Present)
+          <p class="mt-5 text-lg leading-relaxed text-muted">
+            I am <strong class="text-strong">Md. Fardin Faruk Bhuiyan</strong>, a Jr. SQA Engineer at
+            <strong class="text-strong">Newroz Technologies Limited</strong> (September 2025 – Present)
             based in Uttara, Dhaka, Bangladesh. I design and execute test cases, regression suites,
             and defect workflows in Jira; build reusable Playwright and Maestro automation; validate
             APIs with Postman/Newman and SQL; and run load tests with JMeter while investigating
             production signals in AWS CloudWatch.
           </p>
-          <p class="mt-4 text-lg leading-relaxed text-ink/80">
+          <p class="mt-4 text-lg leading-relaxed text-muted">
             Education: Bachelor of Science in Computer Science &amp; Engineering from
             Southeast University (CGPA 3.80 / 4.00).
           </p>
@@ -166,7 +179,7 @@
         <div class="reveal">
           <p class="section-eyebrow">Skills</p>
           <h2 class="section-title">Technical toolkit</h2>
-          <p class="mt-3 max-w-2xl text-ink/70">
+          <p class="mt-3 max-w-2xl text-muted">
             Tools and practices I use day to day for manual, API, performance, and AI-assisted automation testing.
           </p>
         </div>
@@ -199,20 +212,33 @@
     </section>
 
     <!-- QA Projects -->
-    <section id="qa-projects" class="section bg-white">
+    <section id="qa-projects" class="section section-raised">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="reveal">
           <p class="section-eyebrow">QA Projects</p>
           <h2 class="section-title">Product work I test</h2>
-          <p class="mt-3 max-w-2xl text-ink/70">
+          <p class="mt-3 max-w-2xl text-muted">
             Fintech and e-commerce products at Newroz — full module, manual, and automation coverage on web and mobile.
           </p>
         </div>
 
         <div class="mt-10 grid gap-6 md:grid-cols-3">
           <article class="project-block reveal">
-            <h4 class="font-display text-xl font-bold text-navy">ZiCharge</h4>
-            <p class="mt-3 text-ink/75 leading-relaxed">
+            <h4 class="project-title font-display text-xl font-bold">
+              <a
+                class="project-store-link"
+                href="https://apps.apple.com/us/app/zicharge/id1611304451"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                ZiCharge
+                <svg class="project-external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                <span class="sr-only">(opens in App Store)</span>
+              </a>
+            </h4>
+            <p class="mt-3 text-muted leading-relaxed">
               Long-running fintech / crypto wallet product. Currently focused on full
               ZiCharge coverage across web and mobile.
             </p>
@@ -231,8 +257,21 @@
           </article>
 
           <article class="project-block reveal reveal-delay">
-            <h4 class="font-display text-xl font-bold text-navy">FastPay</h4>
-            <p class="mt-3 text-ink/75 leading-relaxed">
+            <h4 class="project-title font-display text-xl font-bold">
+              <a
+                class="project-store-link"
+                href="https://apps.apple.com/us/app/fastpay-merchant/id1551790633"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                FastPay
+                <svg class="project-external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                <span class="sr-only">(opens in App Store)</span>
+              </a>
+            </h4>
+            <p class="mt-3 text-muted leading-relaxed">
               Payment and lifestyle product coverage including ticket booking, eSIM, and related journeys.
             </p>
             <ul class="project-bullets">
@@ -249,8 +288,21 @@
           </article>
 
           <article class="project-block reveal reveal-delay-2">
-            <h4 class="font-display text-xl font-bold text-navy">Card Selling</h4>
-            <p class="mt-3 text-ink/75 leading-relaxed">
+            <h4 class="project-title font-display text-xl font-bold">
+              <a
+                class="project-store-link"
+                href="https://apps.apple.com/us/app/fp-card-selling/id1255867347"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Card Selling
+                <svg class="project-external-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                <span class="sr-only">(opens in App Store)</span>
+              </a>
+            </h4>
+            <p class="mt-3 text-muted leading-relaxed">
               Card selling product QA across catalog, purchase, and fulfillment journeys.
             </p>
             <ul class="project-bullets">
@@ -275,7 +327,7 @@
         <div class="reveal">
           <p class="section-eyebrow">Automation</p>
           <h2 class="section-title">Sample automation &amp; test works</h2>
-          <p class="mt-3 max-w-2xl text-ink/70">
+          <p class="mt-3 max-w-2xl text-muted">
             Public sample works covering manual test design, API/performance testing, and web/mobile automation.
           </p>
         </div>
@@ -314,12 +366,12 @@
     </section>
 
     <!-- Research -->
-    <section id="research" class="section bg-white">
+    <section id="research" class="section section-raised">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="reveal">
           <p class="section-eyebrow">Research</p>
           <h2 class="section-title">Research papers</h2>
-          <p class="mt-3 max-w-2xl text-ink/70">
+          <p class="mt-3 max-w-2xl text-muted">
             Published and ongoing research in computer vision and artificial intelligence.
           </p>
         </div>
@@ -382,13 +434,13 @@
           <div class="reveal">
             <p class="section-eyebrow">Contact</p>
             <h2 class="section-title">Let’s talk about quality</h2>
-            <p class="mt-4 text-ink/75 leading-relaxed max-w-md">
+            <p class="mt-4 text-muted leading-relaxed max-w-md">
               Send a message with your name, mobile number, email, and what you need help with.
               Submissions are stored in my Google Sheet inbox.
             </p>
-            <ul class="mt-8 space-y-3 text-ink/80">
+            <ul class="mt-8 space-y-3 text-muted">
               <li>
-                <a id="contact-email" href="mailto:fardinfaruk2001@gmail.com" class="hover:text-accent transition-colors">
+                <a id="contact-email" href="mailto:fardinfaruk2001@gmail.com" class="contact-link">
                   fardinfaruk2001@gmail.com
                 </a>
               </li>
@@ -424,6 +476,12 @@
     </section>
   </main>
 
+  <div class="theme-switcher" role="radiogroup" aria-label="Color theme">
+    <button type="button" class="theme-dot theme-dot-dark" data-set-theme="dark" role="radio" aria-checked="false" aria-label="Dark theme" tabindex="-1"></button>
+    <button type="button" class="theme-dot theme-dot-light is-active" data-set-theme="light" role="radio" aria-checked="true" aria-label="Light theme"></button>
+    <button type="button" class="theme-dot theme-dot-warm" data-set-theme="warm" role="radio" aria-checked="false" aria-label="Warm theme" tabindex="-1"></button>
+  </div>
+
   <!-- Floating Download CV -->
   <a
     href="assets/Fardin_Faruk_CV.pdf"
@@ -442,7 +500,7 @@
   <!-- Footer -->
   <footer class="footer">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 py-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6">
-      <p class="font-display text-sm font-semibold text-white/80">
+      <p class="footer-copy font-display text-sm font-semibold">
         © <span id="year"></span> Fardin Faruk. All rights reserved.
       </p>
       <div class="flex items-center gap-5">

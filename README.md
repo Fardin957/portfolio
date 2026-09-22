@@ -66,6 +66,7 @@ git push -u origin main
 - **Projects** — ZiCharge, FastPay, Card Selling + sample GitHub works  
 - **Contact** — form to Google Sheets  
 - **Footer** — Facebook, LinkedIn, GitHub  
+- **Theme switcher** — light, dark, and warm palettes, saved in the browser  
 
 ## License
 
