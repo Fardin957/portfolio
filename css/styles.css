@@ -446,6 +446,7 @@ body {
 /* Sections */
 .section {
   padding: 5rem 0;
+  scroll-margin-top: 5rem;
 }
 
 .section-mist {
@@ -617,8 +618,8 @@ body {
 }
 
 .project-external-icon {
-  width: 0.95rem;
-  height: 0.95rem;
+  width: 1.3rem;
+  height: 1.3rem;
   flex-shrink: 0;
   color: var(--accent);
   transition: color 0.2s ease, transform 0.2s ease;
@@ -697,6 +698,11 @@ body {
   transform: translateY(-2px);
 }
 
+.sample-link:hover .project-external-icon {
+  color: var(--accent-hover);
+  transform: translate(1px, -1px);
+}
+
 .sample-link-static {
   cursor: default;
 }
@@ -717,6 +723,9 @@ body {
 }
 
 .sample-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   font-weight: 700;

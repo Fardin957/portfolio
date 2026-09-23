@@ -202,30 +202,53 @@
   });
 
   /* ---- Active nav link on scroll ---- */
-  const sections = ["home", "about", "skills", "qa-projects", "automation", "research", "contact"]
+  const sections = ["home", "about", "skills", "qa-projects", "automation", "blog", "research", "contact"]
     .map(function (id) {
       return document.getElementById(id);
     })
     .filter(Boolean);
 
   const navLinks = document.querySelectorAll(".nav-link");
+  const headerOffset = 80;
 
-  function updateActiveNav() {
-    const offset = window.scrollY + 96;
-    let current = sections[0] && sections[0].id;
-
-    sections.forEach(function (section) {
-      if (section.offsetTop <= offset) current = section.id;
-    });
-
+  function setActiveNav(currentId) {
     navLinks.forEach(function (link) {
       const href = link.getAttribute("href") || "";
-      link.classList.toggle("is-active", href === "#" + current);
+      link.classList.toggle("is-active", href === "#" + currentId);
     });
   }
 
+  function updateActiveNav() {
+    if (!sections.length) return;
+
+    // Pick the section that currently contains the line just under the fixed header.
+    // This correctly activates short sections (e.g. Blog) instead of leaving the previous one active.
+    const probe = headerOffset + 8;
+    let current = sections[0].id;
+
+    for (let i = 0; i < sections.length; i++) {
+      const rect = sections[i].getBoundingClientRect();
+      if (rect.top <= probe && rect.bottom > probe) {
+        current = sections[i].id;
+      }
+    }
+
+    setActiveNav(current);
+  }
+
+  navLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+      const href = link.getAttribute("href") || "";
+      if (href.charAt(0) === "#") {
+        setActiveNav(href.slice(1));
+      }
+    });
+  });
+
   updateActiveNav();
   window.addEventListener("scroll", updateActiveNav, { passive: true });
+  window.addEventListener("hashchange", updateActiveNav);
+  window.addEventListener("resize", updateActiveNav);
 
   /* ---- Reveal on scroll ---- */
   const revealEls = document.querySelectorAll(".reveal");
