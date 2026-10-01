@@ -6,6 +6,22 @@
   <script>
     (function () {
       try {
+        var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+        var isReload = nav && nav.type === "reload";
+        if (!isReload && performance.navigation) {
+          isReload = performance.navigation.type === 1;
+        }
+        if (!isReload) return;
+        if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+        if (location.hash) {
+          history.replaceState(null, "", location.pathname + location.search);
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <script>
+    (function () {
+      try {
         var allowed = { light: 1, dark: 1, warm: 1 };
         var fromQuery = new URLSearchParams(window.location.search).get("theme");
         var saved = localStorage.getItem("theme");

@@ -3,6 +3,37 @@
 
   const config = window.PORTFOLIO_CONFIG || {};
 
+  /* ---- On browser refresh, always start at Home ---- */
+  (function resetToHomeOnRefresh() {
+    var isReload = false;
+    try {
+      var entry = performance.getEntriesByType("navigation")[0];
+      isReload = !!(entry && entry.type === "reload");
+    } catch (e) {}
+    if (!isReload) {
+      try {
+        isReload = !!(performance.navigation && performance.navigation.type === 1);
+      } catch (e) {}
+    }
+    if (!isReload) return;
+
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+    if (window.location.hash) {
+      history.replaceState(null, "", window.location.pathname + window.location.search);
+    }
+
+    function goHome() {
+      window.scrollTo(0, 0);
+      if (document.documentElement) document.documentElement.scrollTop = 0;
+      if (document.body) document.body.scrollTop = 0;
+    }
+
+    goHome();
+    window.addEventListener("load", goHome);
+  })();
+
   /* ---- Theme switcher ---- */
   (function initThemeSwitcher() {
     var THEMES = ["dark", "light", "warm"];
