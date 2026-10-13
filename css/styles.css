@@ -739,6 +739,20 @@ body {
   font-weight: 400;
 }
 
+.sample-action {
+  margin-top: 0.25rem;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--sky);
+}
+
+.sample-link:hover .sample-action {
+  color: var(--accent);
+}
+
 /* Research papers */
 .paper-card {
   padding: 1.35rem 1.4rem;
