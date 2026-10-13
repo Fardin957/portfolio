@@ -732,6 +732,13 @@ body {
   color: var(--heading);
 }
 
+.sample-subtitle {
+  font-size: 0.875rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
 /* Research papers */
 .paper-card {
   padding: 1.35rem 1.4rem;
