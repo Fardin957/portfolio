@@ -98,13 +98,14 @@
     const el = document.getElementById(id);
     if (!el) return;
     const href = url && url !== "#" ? url : fallback || "#";
-    el.setAttribute("href", href);
     if (!href || href === "#") {
-      el.setAttribute("aria-disabled", "true");
-      el.addEventListener("click", function (e) {
-        if (href === "#") e.preventDefault();
-      });
+      el.hidden = true;
+      el.setAttribute("aria-hidden", "true");
+      return;
     }
+    el.hidden = false;
+    el.removeAttribute("aria-hidden");
+    el.setAttribute("href", href);
   }
 
   setHref("social-facebook", config.FACEBOOK_URL, "#");
@@ -118,7 +119,19 @@
   }
 
   const phoneEl = document.getElementById("contact-phone");
-  if (phoneEl && config.PHONE) phoneEl.textContent = config.PHONE;
+  if (phoneEl && config.PHONE) {
+    var digits = String(config.PHONE).replace(/\D/g, "");
+    if (digits.length === 11 && digits.charAt(0) === "0") {
+      digits = "880" + digits.slice(1);
+    }
+    phoneEl.href = "tel:+" + digits;
+    if (digits.indexOf("880") === 0 && digits.length >= 13) {
+      phoneEl.textContent =
+        "+880 " + digits.slice(3, 7) + "-" + digits.slice(7);
+    } else {
+      phoneEl.textContent = config.PHONE;
+    }
+  }
 
   /* ---- Hero typewriter ---- */
   (function initTypewriter() {
