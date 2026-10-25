@@ -62,6 +62,7 @@ git push -u origin main
 
 - **Home** — name, role, photo  
 - **About** — experience & education  
+- **Certifications** — training credentials (expandable grid)  
 - **Skills** — from CV  
 - **Projects** — ZiCharge, FastPay, Card Selling + sample GitHub works  
 - **Contact** — form to Google Sheets  

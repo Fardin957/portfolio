@@ -268,6 +268,59 @@ body {
   transform: scaleX(1);
 }
 
+.site-header-nav {
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: nowrap;
+  gap: 0.65rem;
+}
+
+@media (min-width: 1024px) {
+  .site-header-nav {
+    gap: 0.85rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .site-header-nav {
+    gap: 1.1rem;
+  }
+
+  .site-header-nav .nav-link {
+    font-size: 0.8125rem;
+  }
+}
+
+.site-header-nav .nav-link {
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+@media (min-width: 1024px) {
+  .site-header-nav .nav-link {
+    font-size: 0.78rem;
+  }
+}
+
+.nav-link-short {
+  display: inline;
+}
+
+.nav-link-long {
+  display: none;
+}
+
+@media (min-width: 1280px) {
+  .nav-link-short {
+    display: none;
+  }
+
+  .nav-link-long {
+    display: inline;
+  }
+}
+
 .btn-header-cta {
   padding: 0.55rem 1rem;
   font-size: 0.75rem;
@@ -807,6 +860,58 @@ body {
   margin-top: 0.75rem;
   font-size: 0.875rem;
   color: var(--text-subtle);
+}
+
+/* Certifications */
+.cert-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 0.35rem;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.4s ease;
+}
+
+.cert-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 8px 24px rgba(28, 56, 91, 0.08);
+}
+
+.cert-thumb-link {
+  display: block;
+  line-height: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cert-thumb-link:focus-visible {
+  outline: 2px solid var(--sky);
+  outline-offset: -2px;
+}
+
+.cert-thumb {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 1754 / 1241;
+}
+
+.cert-card-body {
+  padding: 1.25rem 1.35rem 1.35rem;
+}
+
+.cert-meta {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--text-subtle);
+}
+
+.cert-actions {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
 }
 
 /* Contact form */

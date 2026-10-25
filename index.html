@@ -71,8 +71,8 @@
   <!-- Header -->
   <header id="site-header" class="site-header fixed top-0 inset-x-0 z-50">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
-      <div class="flex h-16 items-center justify-between gap-4">
-        <a href="#home" class="brand-link flex items-center gap-3 min-w-0">
+      <div class="flex h-16 items-center gap-3 lg:gap-4">
+        <a href="#home" class="brand-link flex shrink-0 items-center gap-3 min-w-0">
           <span class="brand-mark" aria-hidden="true">FF</span>
           <span class="min-w-0">
             <span class="font-display text-base sm:text-lg font-extrabold tracking-tight text-heading block leading-tight">
@@ -82,18 +82,23 @@
           </span>
         </a>
 
-        <nav class="hidden md:flex items-center gap-4 lg:gap-6" aria-label="Primary">
+        <nav class="site-header-nav hidden md:flex min-w-0" aria-label="Primary">
           <a href="#home" class="nav-link">Home</a>
           <a href="#about" class="nav-link">About</a>
+          <a href="#certifications" class="nav-link">
+            <span class="nav-link-long">Certifications</span>
+            <span class="nav-link-short">Certs</span>
+          </a>
           <a href="#skills" class="nav-link">Skills</a>
           <a href="#qa-projects" class="nav-link">QA Projects</a>
           <a href="#automation" class="nav-link">Automation</a>
           <a href="#blog" class="nav-link">Blog</a>
           <a href="#research" class="nav-link">Research</a>
-          <a href="#contact" class="btn btn-header-cta">Contact</a>
         </nav>
 
-        <div class="flex items-center gap-2 md:hidden">
+        <a href="#contact" class="btn btn-header-cta hidden md:inline-flex shrink-0">Contact</a>
+
+        <div class="ml-auto flex items-center gap-2 md:hidden">
           <a href="#contact" class="btn btn-header-cta btn-header-cta-sm">Contact</a>
           <button
             type="button"
@@ -118,6 +123,7 @@
       <nav class="mx-auto max-w-6xl px-4 py-4 flex flex-col gap-3" aria-label="Mobile">
         <a href="#home" class="mobile-link">Home</a>
         <a href="#about" class="mobile-link">About</a>
+        <a href="#certifications" class="mobile-link">Certifications</a>
         <a href="#skills" class="mobile-link">Skills</a>
         <a href="#qa-projects" class="mobile-link">QA Projects</a>
         <a href="#automation" class="mobile-link">Automation</a>
@@ -191,8 +197,60 @@
       </div>
     </section>
 
+    <!-- Certifications -->
+    <section id="certifications" class="section section-mist">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="reveal">
+          <p class="section-eyebrow">Certifications</p>
+          <h2 class="section-title">Professional training &amp; credentials</h2>
+          <p class="mt-3 max-w-2xl text-muted">
+            Formal courses that complement hands-on QA work on fintech and e-commerce products.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <article class="cert-card reveal">
+            <a
+              class="cert-thumb-link"
+              href="assets/certifications/simplilearn-intro-software-testing.png"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="cert-thumb"
+                src="assets/certifications/simplilearn-intro-software-testing.png"
+                alt="Simplilearn SkillUp certificate: Introduction to Software Testing, awarded to Md. Fardin Faruk Bhuiyan, 25 October 2026"
+                width="1754"
+                height="1241"
+                loading="lazy"
+              />
+              <span class="sr-only">Open certificate image full size</span>
+            </a>
+            <div class="cert-card-body">
+              <div class="paper-card-top">
+                <span class="paper-status paper-status-published">Verified</span>
+                <span class="paper-venue">Simplilearn SkillUp</span>
+              </div>
+              <h3 class="paper-title">Introduction to Software Testing</h3>
+              <p class="cert-meta">Issued 25 October 2026 · ID 10939151</p>
+              <div class="cert-actions">
+                <a
+                  class="btn btn-link"
+                  href="assets/certifications/simplilearn-intro-software-testing.png"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View certificate
+                </a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Skills -->
-    <section id="skills" class="section section-mist">
+    <section id="skills" class="section section-raised">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="reveal">
           <p class="section-eyebrow">Skills</p>
