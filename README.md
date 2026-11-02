@@ -64,7 +64,8 @@ git push -u origin main
 - **About** — experience & education  
 - **Certifications** — training credentials (expandable grid)  
 - **Skills** — from CV  
-- **Projects** — ZiCharge, FastPay, Card Selling + sample GitHub works  
+- **Projects** — ZiCharge, FastPay, Card Selling, Kartat + sample GitHub works  
+- **Recommendations** — mentor / peer recommendations with original screenshot  
 - **Contact** — form to Google Sheets  
 - **Footer** — Facebook, LinkedIn, GitHub  
 - **Theme switcher** — light, dark, and warm palettes, saved in the browser  

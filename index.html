@@ -72,9 +72,9 @@
   <header id="site-header" class="site-header fixed top-0 inset-x-0 z-50">
     <div class="mx-auto max-w-6xl px-4 sm:px-6">
       <div class="flex h-16 items-center gap-3 lg:gap-4">
-        <a href="#home" class="brand-link flex shrink-0 items-center gap-3 min-w-0">
+        <a href="#home" class="brand-link flex shrink-0 items-center gap-3">
           <span class="brand-mark" aria-hidden="true">FF</span>
-          <span class="min-w-0">
+          <span class="brand-text">
             <span class="font-display text-base sm:text-lg font-extrabold tracking-tight text-heading block leading-tight">
               Fardin Faruk
             </span>
@@ -82,23 +82,47 @@
           </span>
         </a>
 
-        <nav class="site-header-nav hidden md:flex min-w-0" aria-label="Primary">
+        <nav class="site-header-nav hidden xl:flex min-w-0" aria-label="Primary">
           <a href="#home" class="nav-link">Home</a>
           <a href="#about" class="nav-link">About</a>
-          <a href="#certifications" class="nav-link">
-            <span class="nav-link-long">Certifications</span>
-            <span class="nav-link-short">Certs</span>
-          </a>
           <a href="#skills" class="nav-link">Skills</a>
-          <a href="#qa-projects" class="nav-link">QA Projects</a>
-          <a href="#automation" class="nav-link">Automation</a>
-          <a href="#blog" class="nav-link">Blog</a>
-          <a href="#research" class="nav-link">Research</a>
+          <a href="#qa-projects" class="nav-link">
+            <span class="nav-link-long">QA Projects</span>
+            <span class="nav-link-short">Projects</span>
+          </a>
+          <a href="#automation" class="nav-link">
+            <span class="nav-link-long">Automation</span>
+            <span class="nav-link-short">Auto</span>
+          </a>
+          <a href="#recommendations" class="nav-link">
+            <span class="nav-link-long">Recommendations</span>
+            <span class="nav-link-short">Recs</span>
+          </a>
+          <div class="nav-dropdown" id="nav-more">
+            <button
+              type="button"
+              class="nav-link nav-dropdown-toggle"
+              id="nav-more-toggle"
+              aria-expanded="false"
+              aria-haspopup="true"
+              aria-controls="nav-more-menu"
+            >
+              More
+              <svg class="nav-dropdown-caret" viewBox="0 0 12 12" fill="none" aria-hidden="true">
+                <path d="M2.5 4.5L6 8l3.5-3.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </button>
+            <div class="nav-dropdown-menu" id="nav-more-menu" hidden>
+              <a href="#certifications" class="nav-dropdown-link">Certifications</a>
+              <a href="#blog" class="nav-dropdown-link">Blog</a>
+              <a href="#research" class="nav-dropdown-link">Research</a>
+            </div>
+          </div>
         </nav>
 
-        <a href="#contact" class="btn btn-header-cta hidden md:inline-flex shrink-0">Contact</a>
+        <a href="#contact" class="btn btn-header-cta hidden xl:inline-flex shrink-0">Contact</a>
 
-        <div class="ml-auto flex items-center gap-2 md:hidden">
+        <div class="ml-auto flex items-center gap-2 xl:hidden">
           <a href="#contact" class="btn btn-header-cta btn-header-cta-sm">Contact</a>
           <button
             type="button"
@@ -119,14 +143,15 @@
       </div>
     </div>
 
-    <div id="mobile-nav" class="mobile-nav md:hidden hidden">
+    <div id="mobile-nav" class="mobile-nav xl:hidden hidden">
       <nav class="mx-auto max-w-6xl px-4 py-4 flex flex-col gap-3" aria-label="Mobile">
         <a href="#home" class="mobile-link">Home</a>
         <a href="#about" class="mobile-link">About</a>
-        <a href="#certifications" class="mobile-link">Certifications</a>
         <a href="#skills" class="mobile-link">Skills</a>
         <a href="#qa-projects" class="mobile-link">QA Projects</a>
         <a href="#automation" class="mobile-link">Automation</a>
+        <a href="#recommendations" class="mobile-link">Recommendations</a>
+        <a href="#certifications" class="mobile-link">Certifications</a>
         <a href="#blog" class="mobile-link">Blog</a>
         <a href="#research" class="mobile-link">Research</a>
         <a href="#contact" class="mobile-link">Contact</a>
@@ -646,8 +671,64 @@
       </div>
     </section>
 
+    <!-- Recommendations -->
+    <section id="recommendations" class="section section-raised">
+      <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="reveal">
+          <p class="section-eyebrow">Recommendations</p>
+          <h2 class="section-title">What mentors say</h2>
+          <p class="mt-3 max-w-2xl text-muted">
+            Feedback from people I have worked with closely on quality and delivery.
+          </p>
+        </div>
+
+        <div class="mt-10 grid gap-6">
+          <article class="rec-card reveal">
+            <div class="rec-card-main">
+              <div class="rec-header">
+                <div class="rec-identity">
+                  <h3 class="rec-name">Ruhul Azam</h3>
+                  <p class="rec-role">
+                    Software Engineer · Backend &amp; Distributed Systems · Fintech · Java / Spring Boot
+                  </p>
+                  <p class="rec-meta">Mentor at Newroz Technologies · November 2026</p>
+                </div>
+              </div>
+              <blockquote class="rec-quote">
+                <p>
+                  I mentored Fardin at Newroz Technologies during his time as a Jr. SQA Engineer, and he stood out as one of the most dedicated and quick-learning juniors I’ve worked with.
+                </p>
+                <p>
+                  Fardin is hardworking and takes real ownership of his work. When he picks up a task, he sees it through, and he doesn’t wait to be chased. He pays close attention to detail, catches issues early, and writes clear bug reports that developers can act on right away. He doesn’t just report problems, he helps trace where they come from.
+                </p>
+                <p>
+                  What stands out most is his learning mentality. He asks good questions, takes feedback well, and keeps improving. He picked up our testing processes quickly and grew in confidence every month. He treats every release like it’s his own. He’s also calm under deadline pressure and honest when something doesn’t look right, which matters a lot on a quality team.
+                </p>
+              </blockquote>
+            </div>
+            <a
+              class="rec-proof-link"
+              href="assets/recommendations/ruhul-azam-linkedin.png"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img
+                class="rec-proof-img"
+                src="assets/recommendations/ruhul-azam-linkedin.png"
+                alt="LinkedIn recommendation from Ruhul Azam, mentor at Newroz Technologies, November 2026"
+                width="793"
+                height="337"
+                loading="lazy"
+              />
+              <span class="rec-proof-caption">View original screenshot</span>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
     <!-- Contact -->
-    <section id="contact" class="section section-raised">
+    <section id="contact" class="section section-mist">
       <div class="mx-auto max-w-6xl px-4 sm:px-6">
         <div class="grid gap-12 lg:grid-cols-2 lg:items-start">
           <div class="reveal">

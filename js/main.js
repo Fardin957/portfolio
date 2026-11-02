@@ -245,14 +245,58 @@
     });
   });
 
+  /* ---- Desktop "More" dropdown ---- */
+  const moreDropdown = document.getElementById("nav-more");
+  const moreToggle = document.getElementById("nav-more-toggle");
+  const moreMenu = document.getElementById("nav-more-menu");
+  const moreSectionIds = ["certifications", "blog", "research"];
+
+  function setMoreOpen(open) {
+    if (!moreDropdown || !moreToggle || !moreMenu) return;
+    moreDropdown.classList.toggle("is-open", open);
+    moreToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    moreMenu.hidden = !open;
+  }
+
+  if (moreToggle) {
+    moreToggle.addEventListener("click", function (event) {
+      event.stopPropagation();
+      setMoreOpen(moreToggle.getAttribute("aria-expanded") !== "true");
+    });
+  }
+
+  if (moreMenu) {
+    moreMenu.querySelectorAll("a").forEach(function (link) {
+      link.addEventListener("click", function () {
+        setMoreOpen(false);
+      });
+    });
+  }
+
+  document.addEventListener("click", function (event) {
+    if (!moreDropdown || !moreDropdown.classList.contains("is-open")) return;
+    if (!moreDropdown.contains(event.target)) {
+      setMoreOpen(false);
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") setMoreOpen(false);
+  });
+
+  window.addEventListener("resize", function () {
+    setMoreOpen(false);
+  });
+
   /* ---- Active nav link on scroll ---- */
-  const sections = ["home", "about", "skills", "qa-projects", "automation", "blog", "research", "contact"]
+  const sections = ["home", "about", "certifications", "skills", "qa-projects", "automation", "blog", "research", "recommendations", "contact"]
     .map(function (id) {
       return document.getElementById(id);
     })
     .filter(Boolean);
 
-  const navLinks = document.querySelectorAll(".nav-link");
+  const navLinks = document.querySelectorAll(".site-header-nav > .nav-link");
+  const dropdownLinks = document.querySelectorAll(".nav-dropdown-link");
   const headerOffset = 80;
 
   function setActiveNav(currentId) {
@@ -260,6 +304,15 @@
       const href = link.getAttribute("href") || "";
       link.classList.toggle("is-active", href === "#" + currentId);
     });
+
+    dropdownLinks.forEach(function (link) {
+      const href = link.getAttribute("href") || "";
+      link.classList.toggle("is-active", href === "#" + currentId);
+    });
+
+    if (moreDropdown) {
+      moreDropdown.classList.toggle("has-active", moreSectionIds.indexOf(currentId) !== -1);
+    }
   }
 
   function updateActiveNav() {
@@ -281,6 +334,16 @@
   }
 
   navLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+      const href = link.getAttribute("href") || "";
+      if (href.charAt(0) === "#") {
+        setActiveNav(href.slice(1));
+        setMoreOpen(false);
+      }
+    });
+  });
+
+  dropdownLinks.forEach(function (link) {
     link.addEventListener("click", function () {
       const href = link.getAttribute("href") || "";
       if (href.charAt(0) === "#") {
