@@ -1046,9 +1046,9 @@ body {
   width: 100%;
   height: auto;
   display: block;
-  aspect-ratio: 793 / 337;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top left;
+  background: var(--surface-raised);
 }
 
 .rec-proof-caption {
